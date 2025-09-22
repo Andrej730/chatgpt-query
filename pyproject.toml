@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chatgpt-query"
+version = "0.1.0"
+description = "A simple chat interface tool"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    {name = "Andrej730", email = "andrej730@icloud.com"}
+]
+maintainers = [
+    {name = "Andrej730", email = "andrej730@icloud.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["chat", "ai", "chatgpt", "query", "cli"]
+dependencies = []
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/Andrej730/chatgpt-query"
+Repository = "https://github.com/Andrej730/chatgpt-query"
+Issues = "https://github.com/Andrej730/chatgpt-query/issues"
+
+[project.scripts]
+chat = "chatgpt_query:main"
+
+[tool.setuptools]
+py-modules = ["chatgpt_query"]

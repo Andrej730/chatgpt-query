@@ -1,0 +1,12 @@
+# Buiild artifacts
+# temp build files
+build
+# .whl, .tar.gz
+dist
+*.egg-info
+
+# Virtual environment
+.venv
+
+# Python cache
+__pycache__
