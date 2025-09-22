@@ -1,16 +1,19 @@
 """Main module for ChatGPT Query."""
 
-import argparse
 import sys
 import webbrowser
 from urllib.parse import urlencode
 
+import typed_argparse as tap
 
-def main():
-    parser = argparse.ArgumentParser(description="ChatGPT Query Tool")
-    parser.add_argument("query", nargs="*", help="Query to send to ChatGPT")
-    args = parser.parse_args()
 
+class Args(tap.TypedArgs):
+    query: list[str] = tap.arg(
+        nargs="*", positional=True, help="Query to send to ChatGPT"
+    )
+
+
+def run(args: Args):
     if not args.query:
         print("No query provided. Please provide a query string. E.g. `chat Hello`.")
         sys.exit(1)
@@ -22,6 +25,10 @@ def main():
 
     print(f"Opening URL: {url}")
     webbrowser.open(url)
+
+
+def main() -> None:
+    tap.Parser(Args).bind(run).run()
 
 
 if __name__ == "__main__":
