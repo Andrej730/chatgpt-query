@@ -23,6 +23,11 @@ class Args(tap.TypedArgs):
         default="auto",
         help="Specify the model to use.",
     )
+    search: bool = tap.arg(
+        "-s",
+        "--search",
+        help="Ask ChatGPT to run search on the query.",
+    )
 
 
 def run(args: Args):
@@ -34,6 +39,8 @@ def run(args: Args):
         "q": " ".join(args.query),
         "model": args.model,
     }
+    if args.search:
+        url_params["hints"] = "search"
     url = f"https://chat.openai.com/?{urlencode(url_params)}"
 
     if args.dry:
