@@ -17,6 +17,13 @@ class Args(tap.TypedArgs):
         help="Print the URL instead of opening it in a browser",
     )
 
+    model: str = tap.arg(
+        "-m",
+        "--model",
+        default="auto",
+        help="Specify the model to use.",
+    )
+
 
 def run(args: Args):
     if not args.query:
@@ -25,6 +32,7 @@ def run(args: Args):
 
     url_params = {
         "q": " ".join(args.query),
+        "model": args.model,
     }
     url = f"https://chat.openai.com/?{urlencode(url_params)}"
 
