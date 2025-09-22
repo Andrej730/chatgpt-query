@@ -11,6 +11,11 @@ class Args(tap.TypedArgs):
     query: list[str] = tap.arg(
         nargs="*", positional=True, help="Query to send to ChatGPT"
     )
+    dry: bool = tap.arg(
+        "-d",
+        "--dry-run",
+        help="Print the URL instead of opening it in a browser",
+    )
 
 
 def run(args: Args):
@@ -22,6 +27,10 @@ def run(args: Args):
         "q": " ".join(args.query),
     }
     url = f"https://chat.openai.com/?{urlencode(url_params)}"
+
+    if args.dry:
+        print(f"Generated URL: {url}")
+        return
 
     print(f"Opening URL: {url}")
     webbrowser.open(url)
