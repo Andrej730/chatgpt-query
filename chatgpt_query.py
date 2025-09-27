@@ -28,6 +28,11 @@ class Args(tap.TypedArgs):
         "--search",
         help="Ask ChatGPT to run search on the query.",
     )
+    temp: bool = tap.arg(
+        "-t",
+        "--temp",
+        help="Open a temporary chat session (not stored in chat history).",
+    )
 
 
 def run(args: Args):
@@ -41,6 +46,9 @@ def run(args: Args):
     }
     if args.search:
         url_params["hints"] = "search"
+    if args.temp:
+        url_params["temporary-chat"] = "true"
+
     url = f"https://chat.openai.com/?{urlencode(url_params)}"
 
     if args.dry:
